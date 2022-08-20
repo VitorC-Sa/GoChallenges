@@ -12,31 +12,28 @@ What is considered Valid?
 A string of braces is considered valid if all braces are matched with the correct brace. */
 
 func MySolution(str string) bool {
-	var indexBackup []int
-	s := 0
-	sBracesIni := "([{"
-	sBracesEnd := ")]}"
-
-	if isFirstIndexValid := strings.IndexByte(sBracesIni, str[0]); isFirstIndexValid == -1 {
-		return false
-	}
+	const sBracesIni = "([{"
+	const sBracesEnd = ")]}"
+	sIniIndexBackup := []int{}
+	sentinel := 0
 
 	for _, v := range str {
 		if index := strings.IndexRune(sBracesIni, v); index != -1 { //get index of v if match with Ini Braces
-			indexBackup = append(indexBackup, index)
-			s++
+			sentinel++
+			sIniIndexBackup = append(sIniIndexBackup, index)
 		}
 		if index := strings.IndexRune(sBracesEnd, v); index != -1 { //get index of v if match with End Braces
-			l := len(indexBackup)
-			if index != indexBackup[l-1] { //compare last End Brace with last Ini Brace
+			sentinel--
+
+			if sIniIndexBackup[len(sIniIndexBackup)-1] != index { //compare index of v with last index of Ini Braces
 				return false
+			} else {
+				sIniIndexBackup = append(sIniIndexBackup, sIniIndexBackup[:len(sIniIndexBackup)-1]...) //delete last sIniIndexBackup value
 			}
-			indexBackup = append(indexBackup, indexBackup[:l-1]...) //delete last Ini Brace index from indexBackup
-			s--
 		}
 	}
 
-	if s != 0 {
+	if sentinel != 0 {
 		return false
 	}
 
