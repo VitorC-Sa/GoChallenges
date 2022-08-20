@@ -17,6 +17,10 @@ func MySolution(str string) bool {
 	sIniIndexBackup := []int{}
 	sentinel := 0
 
+	if isFirstIndexValid := strings.IndexByte(sBracesIni, str[0]); isFirstIndexValid == -1 {
+		return false
+	}
+
 	for _, v := range str {
 		if index := strings.IndexRune(sBracesIni, v); index != -1 { //get index of v if match with Ini Braces
 			sentinel++
@@ -27,9 +31,9 @@ func MySolution(str string) bool {
 
 			if sIniIndexBackup[len(sIniIndexBackup)-1] != index { //compare index of v with last index of Ini Braces
 				return false
-			} else {
-				sIniIndexBackup = append(sIniIndexBackup, sIniIndexBackup[:len(sIniIndexBackup)-1]...) //delete last sIniIndexBackup value
 			}
+
+			sIniIndexBackup = append(sIniIndexBackup, sIniIndexBackup[:len(sIniIndexBackup)-1]...) //delete last sIniIndexBackup value
 		}
 	}
 
@@ -38,4 +42,23 @@ func MySolution(str string) bool {
 	}
 
 	return true
+}
+
+func BestSolution(str string) bool {
+	var m = map[string]string{
+		"{": "}",
+		"(": ")",
+		"[": "]",
+	}
+
+	s := make([]string, 0)
+	for _, r := range str {
+		r := string(r)
+		if len(s) > 0 && m[s[len(s)-1]] == r {
+			s = s[:len(s)-1]
+		} else {
+			s = append(s, r)
+		}
+	}
+	return len(s) == 0
 }

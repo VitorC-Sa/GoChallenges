@@ -25,6 +25,10 @@ func getTestCase() []tests {
 		{name: "t6", args: args{str: "(("}, want: false},
 		{name: "t7", args: args{str: "(((({{}})[]))"}, want: false},
 		{name: "t8", args: args{str: "()({{}}"}, want: false},
+		{name: "t9", args: args{str: "()({{}}))))))))"}, want: false},
+		{name: "t10", args: args{str: "}}}}}}"}, want: false},
+		{name: "t11", args: args{str: ")))))"}, want: false},
+		{name: "t12", args: args{str: "]]]]]]"}, want: false},
 	}
 }
 
@@ -34,6 +38,17 @@ func TestMySolution(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := MySolution(tt.args.str); got != tt.want {
 				t.Errorf("MySolution() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestBestSolution(t *testing.T) {
+	tests := getTestCase()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := BestSolution(tt.args.str); got != tt.want {
+				t.Errorf("BestSolution() = %v, want %v", got, tt.want)
 			}
 		})
 	}
