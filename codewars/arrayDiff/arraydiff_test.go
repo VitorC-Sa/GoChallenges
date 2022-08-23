@@ -32,7 +32,18 @@ func TestMySolution(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := MySolution(tt.args.a, tt.args.b); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ArrayDiff() = %v, want %v", got, tt.want)
+				t.Errorf("MySolution() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestBestSolution(t *testing.T) {
+	tests := getTestCase()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := BestSolution(tt.args.a, tt.args.b); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("BestSolution() = %v, want %v", got, tt.want)
 			}
 		})
 	}
