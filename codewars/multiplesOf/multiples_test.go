@@ -19,8 +19,8 @@ func getTestCase() []tests {
 		{name: "t0", args: args{number: -1}, want: 0},
 		{name: "t1", args: args{number: 10}, want: 23},
 		{name: "t2", args: args{number: 20}, want: 78},
-		{name: "t2", args: args{number: 2}, want: 0},
-		{name: "t2", args: args{number: 0}, want: 0},
+		{name: "t3", args: args{number: 2}, want: 0},
+		{name: "t4", args: args{number: 0}, want: 0},
 	}
 }
 
