@@ -26,3 +26,18 @@ func MySolution(a, b []int) []int {
 
 	return res
 }
+
+func BestSolution(a, b []int) []int {
+	r := make([]int, 0)
+	m := map[int]bool{}
+
+	for _, v := range b {
+		m[v] = true
+	}
+	for _, v := range a {
+		if !m[v] {
+			r = append(r, v)
+		}
+	}
+	return r
+}
