@@ -19,8 +19,7 @@ func MySolution(arr []int) [2]int {
 	for _, v := range arr {
 		if v < min {
 			min = v
-		}
-		if v > max {
+		} else if v > max {
 			max = v
 		}
 	}
