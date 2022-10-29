@@ -1,22 +1,15 @@
 package multiplicationtable
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
-)
 
-func testName() func() string {
-	i := 0
-	return func() string {
-		i++
-		return fmt.Sprintf("Test N%d", i)
-	}
-}
+	"github.com/VitorC-Sa/GoChallenges/utils/test"
+)
 
 func TestMySolution(t *testing.T) {
 
-	tName := testName()
+	tName := test.Name()
 
 	type args struct {
 		n int
