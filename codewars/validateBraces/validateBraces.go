@@ -44,6 +44,30 @@ func MySolution(str string) bool {
 	return true
 }
 
+func MyNewSolution(str string) bool {
+	bracesRules := map[string]string{
+		"(": ")",
+		"[": "]",
+		"{": "}",
+	}
+	var s Stack
+	for _, v := range strings.Split(str, "") {
+		switch v {
+		case "(", "[", "{":
+			s.Add(v)
+		case ")", "]", "}":
+			if last := s.GetLast(); last != nil {
+				if bracesRules[*last] == v {
+					s.DeleteLast()
+					continue
+				}
+			}
+			return false
+		}
+	}
+	return s.IsEmpty()
+}
+
 func BestSolution(str string) bool {
 	var m = map[string]string{
 		"{": "}",

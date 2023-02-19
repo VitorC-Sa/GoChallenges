@@ -43,6 +43,17 @@ func TestMySolution(t *testing.T) {
 	}
 }
 
+func TestMyNewSolution(t *testing.T) {
+	tests := getTestCase()
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MyNewSolution(tt.args.str); got != tt.want {
+				t.Errorf("MyNewSolution() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func TestBestSolution(t *testing.T) {
 	tests := getTestCase()
 	for _, tt := range tests {
